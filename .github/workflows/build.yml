@@ -19,12 +19,12 @@ jobs:
       - uses: vexxhost/docker-atmosphere/.github/actions/checkout@main
         with:
           repository: openstack/glance
-          ref: 6890bc0dd3541a366866560b8daa29559575a77d
+          ref: 6890bc0dd3541a366866560b8daa29559575a77d # stable/2024.1
 
       - uses: vexxhost/docker-atmosphere/.github/actions/checkout@main
         with:
           repository: openstack/glance_store
-          ref: 54020a879cd9060bef51372703c84d63cdbcdf6f
+          ref: 54020a879cd9060bef51372703c84d63cdbcdf6f # stable/2024.1
 
       - uses: vexxhost/docker-atmosphere/.github/actions/build-image@main
         with:
