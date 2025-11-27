@@ -29,7 +29,6 @@ jobs:
       - uses: vexxhost/docker-atmosphere/.github/actions/build-image@main
         with:
           image-name: glance
-          base-image-tag: zed
           build-contexts: |
             glance=openstack/glance
             glance_store=openstack/glance_store
