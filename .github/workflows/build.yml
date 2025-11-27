@@ -2,22 +2,27 @@ name: build
 
 on:
   pull_request:
+  workflow_dispatch:
   push:
     branches:
       - main
-      - 2025.2
-      - 2025.1
-      - 2024.2
-      - 2024.1
-      - 2023.2
-      - 2023.1
-      - zed
+      - stable/**
 
 jobs:
-  build:
+  image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
     steps:
+      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@main
+        with:
+          repository: openstack/glance
+          ref: 60a2f055d54eb28413921c84afa7ed400bdb0695
+
       - uses: vexxhost/docker-atmosphere/.github/actions/build-image@main
         with:
           image-name: glance
+          build-contexts: glance=openstack/glance
           push: ${{ github.event_name != 'pull_request' }}

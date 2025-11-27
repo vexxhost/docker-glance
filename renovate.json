@@ -1,6 +1,36 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>vexxhost/docker-atmosphere//renovate/openstack"
+    "config:recommended"
+  ],
+  "baseBranches": [
+    "main",
+    "/^stable\/.*$/"
+  ],
+  "addLabels": [
+    "skip-release-notes"
+  ],
+  "prHourlyLimit": 10,
+  "packageRules": [
+    {
+      "enabled": false,
+      "matchPackageNames": [
+        "*"
+      ]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        ".github/workflows/build.yml"
+      ],
+      "matchStrings": [
+        "repository: (?<depName>openstack/.+?)\\n\\s+ref: (?<currentDigest>[a-f0-9]{40})"
+      ],
+      "datasourceTemplate": "git-refs",
+      "packageNameTemplate": "https://github.com/{{{depName}}}",
+      "currentValueTemplate": "master"
+    }
   ]
 }
