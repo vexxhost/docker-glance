@@ -3,11 +3,8 @@
 # Atmosphere-Rebuild-Time: 2024-06-25T22:49:25Z
 
 FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:bff09007027c2b6b908e2e970fe5cf06a4c025848e69bad73aa4970aff4978e2 AS build
-# renovate: name=openstack/glance_store repo=https://github.com/openstack/glance_store.git branch=master
-ARG GLANCE_STORE_GIT_REF=b320f11c8e6c0db495a0d0bd3d43c9406cea1667
-ADD --keep-git-dir=true https://github.com/openstack/glance_store.git#${GLANCE_STORE_GIT_REF} /src/glance_store
-RUN git -C /src/glance_store fetch --unshallow
-RUN --mount=type=bind,from=glance,source=/,target=/src/glance,readwrite <<EOF bash -xe
+RUN --mount=type=bind,from=glance,source=/,target=/src/glance,readwrite \
+    --mount=type=bind,from=glance_store,source=/,target=/src/glance_store,readwrite <<EOF bash -xe
 uv pip install \
     --constraint /upper-constraints.txt \
         /src/glance \
