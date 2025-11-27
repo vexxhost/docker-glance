@@ -3,10 +3,7 @@
 # Atmosphere-Rebuild-Time: 2024-06-25T22:49:25Z
 
 FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:bff09007027c2b6b908e2e970fe5cf06a4c025848e69bad73aa4970aff4978e2 AS build
-# renovate: name=openstack/glance repo=https://github.com/openstack/glance.git branch=master
-ARG GLANCE_GIT_REF=60a2f055d54eb28413921c84afa7ed400bdb0695
-ADD --keep-git-dir=true https://github.com/openstack/glance.git#${GLANCE_GIT_REF} /src/glance
-RUN git -C /src/glance fetch --unshallow
+COPY --from=glance . /src/glance
 # renovate: name=openstack/glance_store repo=https://github.com/openstack/glance_store.git branch=master
 ARG GLANCE_STORE_GIT_REF=b320f11c8e6c0db495a0d0bd3d43c9406cea1667
 ADD --keep-git-dir=true https://github.com/openstack/glance_store.git#${GLANCE_STORE_GIT_REF} /src/glance_store
