@@ -14,7 +14,7 @@ uv pip install \
 EOF
 ADD --chmod=644 \
     https://github.com/storpool/storpool-openstack-integration/raw/master/drivers/os_brick/openstack/caracal/storpool.py \
-    /var/lib/openstack/lib/python3.12/site-packages/os_brick/initiator/connectors/storpool.py
+    /var/lib/openstack/lib/python3.10/site-packages/os_brick/initiator/connectors/storpool.py
 
 FROM ghcr.io/vexxhost/python-base:2024.1@sha256:5f8be87b331508e33d7f048503184932d5099a583aba93dbe411df785c2055bf
 RUN \
