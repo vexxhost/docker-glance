@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Atmosphere-Rebuild-Time: 2024-06-25T22:49:25Z
 
-FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:42787cda5791cd6a63d7217bdc4a97f5b033517ee1469a15a1516dfece74cf53 AS build
+FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:a2e0e96c4c115f87f57dea53548e3514453e6ff4ba027d49e7cd70b5900a21ea AS build
 RUN --mount=type=bind,from=glance,source=/,target=/src/glance,readwrite \
     --mount=type=bind,from=glance_store,source=/,target=/src/glance_store,readwrite <<EOF bash -xe
 uv pip install \
@@ -16,7 +16,7 @@ ADD --chmod=644 \
     https://github.com/storpool/storpool-openstack-integration/raw/master/drivers/os_brick/openstack/caracal/storpool.py \
     /var/lib/openstack/lib/python3.12/site-packages/os_brick/initiator/connectors/storpool.py
 
-FROM ghcr.io/vexxhost/python-base:main@sha256:45d6ed59d5813651c67229eb5c4b3f39d2769226f204bda57e15dcce3be6d7cd
+FROM ghcr.io/vexxhost/python-base:main@sha256:56b0f81490bfe511a450d192cd825c7e2e0d47055b594f420ece0d3830812055
 RUN \
     groupadd -g 42424 glance && \
     useradd -u 42424 -g 42424 -M -d /var/lib/glance -s /usr/sbin/nologin -c "Glance User" glance && \
