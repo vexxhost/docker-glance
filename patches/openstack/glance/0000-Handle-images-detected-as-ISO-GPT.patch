@@ -1,0 +1,52 @@
+From 28d98401b965716b53f719d354f0ecbf5583601c Mon Sep 17 00:00:00 2001
+From: Dan Smith <dansmith@redhat.com>
+Date: Mon, 13 Oct 2025 07:39:45 -0700
+Subject: [PATCH] Handle images detected as ISO+GPT
+
+ISO images can have a system-specific bootloader prepended to them,
+which in the case of x86-64 would be a typical GPT/MBR boot sector,
+partition table, etc. These files are not uncommon amongst installer
+media and currently trigger and fail our format detection since they
+are identified as both ISO and GPT. This makes us allow these files
+if they are being uploaded with disk_format=iso as the target. No
+other multi-format combinations are allowed.
+
+Note that this only impacts the upload method and not import with
+format conversion. The latter is more complicated as we currently use
+oslo's detect_file_format() method which specifically disallows
+multiple formats. Converting from iso+gpt to anything else is not
+likely very useful and we already ignore it in the process (although
+after the inspection check).
+
+Closes-Bug: #2127789
+Change-Id: I11a6872275568e874236ae78faf877db1bbfbb9a
+Signed-off-by: Dan Smith <dansmith@redhat.com>
+---
+ glance/location.py | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/glance/location.py b/glance/location.py
+index b6d760cd38..d9a133b39a 100644
+--- a/glance/location.py
++++ b/glance/location.py
+@@ -605,7 +605,17 @@ class ImageProxy(glance.domain.proxy.Image):
+
+         virtual_size = 0
+         try:
+-            inspector = data.format
++            matches = data.formats
++            matched_formats = {str(i): i for i in matches}
++            if matched_formats.keys() == {'iso', 'gpt'}:
++                # If iso+gpt, we choose the iso because bootable-as-block ISOs
++                # can legitimately have a GPT bootloader in front.
++                LOG.debug('Detected format as ISO+GPT, allowing as ISO')
++                inspector = matched_formats['iso']
++            else:
++                # If multiple formats matched, but not exactly iso+gpt,
++                # this will raise to disallow those combinations.
++                inspector = data.format
+             format = str(inspector)
+             if format == self.image.disk_format:
+                 virtual_size = inspector.virtual_size
+--
+2.34.1
