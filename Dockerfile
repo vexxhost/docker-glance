@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Atmosphere-Rebuild-Time: 2024-06-25T22:49:25Z
 
-FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:c4ff9a6fcd25f5710f44d9b194d9b60722094d77406b26c3ad2be374c5a79849 AS build
+FROM ghcr.io/vexxhost/openstack-venv-builder:main@sha256:fac2821bea6a089af71d94905437fe5d5a64b69a92ee8477e47997cd8add4099 AS build
 RUN --mount=type=bind,from=glance,source=/,target=/src/glance,readwrite \
     --mount=type=bind,from=glance_store,source=/,target=/src/glance_store,readwrite <<EOF bash -xe
 uv pip install \
