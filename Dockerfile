@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: © 2025 VEXXHOST, Inc.
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-FROM ghcr.io/vexxhost/openstack-venv-builder:2025.2@sha256:1102360f66bc81f195fd4a15cacb584709a689ce178a8bb620c105235f61ec2c AS build
+FROM ghcr.io/vexxhost/openstack-venv-builder:2025.2@sha256:c559b33dad2e4dcda5dd233fce86b24b091d6e790c2378841a5519f2309e77e2 AS build
 RUN --mount=type=bind,from=glance,source=/,target=/src/glance,readwrite \
     --mount=type=bind,from=glance_store,source=/,target=/src/glance_store,readwrite <<EOF bash -xe
 uv pip install \
