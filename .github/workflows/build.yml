@@ -33,7 +33,7 @@ jobs:
       - uses: vexxhost/docker-atmosphere/.github/actions/checkout@672cf56c8b828e444b6e7906d0ee355c7ec1dea9 # main
         with:
           repository: openstack/glance_store
-          ref: aa6fa0fdb46775f31c16b8241a6769cfe63adb3a # master
+          ref: 1fe48ecd37a67883829ca3836de92a19e7c7e7e3 # master
 
       - uses: vexxhost/docker-atmosphere/.github/actions/build-image@672cf56c8b828e444b6e7906d0ee355c7ec1dea9 # main
         with:
