@@ -16,7 +16,7 @@ ADD --chmod=644 \
     https://github.com/storpool/storpool-openstack-integration/raw/master/drivers/os_brick/openstack/caracal/storpool.py \
     /var/lib/openstack/lib/python3.12/site-packages/os_brick/initiator/connectors/storpool.py
 
-FROM ghcr.io/vexxhost/python-base:2024.2@sha256:4078191859afb8bd6c309c9fc58901270e1f556b535b26396191651e979d0e8b
+FROM ghcr.io/vexxhost/python-base:2024.2@sha256:30ea7e408815efcc29df2764703d3b6256c2b7ee0f31b1e290cb34ddf6f44694
 RUN \
     groupadd -g 42424 glance && \
     useradd -u 42424 -g 42424 -M -d /var/lib/glance -s /usr/sbin/nologin -c "Glance User" glance && \
