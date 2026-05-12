@@ -28,7 +28,7 @@ jobs:
       - uses: vexxhost/docker-atmosphere/.github/actions/checkout@a1ad25c00b6bbf44621748b3a9ed664c6b6cf929 # main
         with:
           repository: openstack/glance
-          ref: 7fcefe62a07d54b3e3c02808befe6c0ce29c78bf # master
+          ref: e7ac61839a43fe63f8ac43dd0e864fd4b347953c # master
 
       - uses: vexxhost/docker-atmosphere/.github/actions/checkout@a1ad25c00b6bbf44621748b3a9ed664c6b6cf929 # main
         with:
