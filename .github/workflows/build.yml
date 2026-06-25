@@ -25,17 +25,17 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@286455d3dcce221b89a5b9cfb836ef2ee4f7df69 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@ee412cafe33e0d7d8b3bc7d0ca64c9f155e293c7 # main
         with:
           repository: openstack/glance
           ref: 6de73e788ef804919f6e17b09ff22d80f10f5a1f # master
 
-      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@286455d3dcce221b89a5b9cfb836ef2ee4f7df69 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@ee412cafe33e0d7d8b3bc7d0ca64c9f155e293c7 # main
         with:
           repository: openstack/glance_store
           ref: 149c15978b374b837e3ce28a06d7da0f1fb6bf79 # master
 
-      - uses: vexxhost/docker-atmosphere/.github/actions/build-image@286455d3dcce221b89a5b9cfb836ef2ee4f7df69 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/build-image@ee412cafe33e0d7d8b3bc7d0ca64c9f155e293c7 # main
         with:
           image-name: glance
           build-contexts: |
