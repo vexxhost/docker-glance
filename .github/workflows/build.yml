@@ -17,17 +17,17 @@ jobs:
       packages: write
       pull-requests: write
     steps:
-      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@2bed598442494c60f1f9ae004626473f7c400bf7 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@d763fd8920390074628431db771a56ab4f7aa8e2 # main
         with:
           repository: openstack/glance
           ref: 9e4b13797baf87bbf4871a253277f977bd755ce3 # stable/2025.2
 
-      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@2bed598442494c60f1f9ae004626473f7c400bf7 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/checkout@d763fd8920390074628431db771a56ab4f7aa8e2 # main
         with:
           repository: openstack/glance_store
           ref: f1a1124e4f6788af1044370898c08b569819dd3a # stable/2025.2
 
-      - uses: vexxhost/docker-atmosphere/.github/actions/build-image@2bed598442494c60f1f9ae004626473f7c400bf7 # main
+      - uses: vexxhost/docker-atmosphere/.github/actions/build-image@d763fd8920390074628431db771a56ab4f7aa8e2 # main
         with:
           image-name: glance
           build-contexts: |
